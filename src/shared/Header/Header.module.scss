@@ -1,9 +1,14 @@
+@import "../../style/variables";
+
+
 .header {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 30px;
+  z-index: 1000;
+  position: relative;
 }
 
 .wrapper {
@@ -11,12 +16,11 @@
   align-items: center;
 }
 
-.change_theme {
-  cursor: pointer;
-}
+
 .change_theme,
 .logo {
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .logo {
@@ -30,5 +34,5 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 25px;
-  color: #4793ff;
+  color: $primary-color;
 }
