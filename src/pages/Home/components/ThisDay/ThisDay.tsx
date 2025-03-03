@@ -1,13 +1,18 @@
 import React from "react";
 import s from "./ThisDay.module.scss";
 import GlobalSwgSelector from "../../../../assets/icons/global/GlobalSwgSelector";
+import { Weather } from "../../../../store/types/types";
 
-const ThisDay = () => {
+interface Props {
+  weather: Weather;
+}
+
+const ThisDay = ({ weather }: Props) => {
   return (
     <div className={s.this_day}>
       <div className={s.top_block}>
         <div className={s.top_block_wrapper}>
-          <div className={s.this_temp}>20°</div>
+          <div className={s.this_temp}>{Math.floor(weather.main.temp)}°</div>
           <div className={s.this_day_day_name}>Сегодня</div>
         </div>
         <GlobalSwgSelector id="sun" />

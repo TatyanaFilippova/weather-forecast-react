@@ -76,7 +76,7 @@ const Days = () => {
       <Tabs />
       <div className={s.days}>
         {days.map((day: Day) => {
-          return <Card day={day} />;
+          return <Card day={day} key={day.day}/>;
         })}
       </div>
     </>
