@@ -5,10 +5,13 @@ import Select from "react-select";
 import { StylesConfig } from "react-select/dist/declarations/src/styles";
 import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../context/ThemeContext";
-import {useCustomDispatch, useCustomSelector} from "../../hooks/store";
-import {selectCurrentCityData, selectCurrentWeatherData} from "../../store/selectors";
-import {currentWeatherSlice} from "../../store/slices/currentWeatherSlice";
-import {currentCitySlice} from "../../store/slices/ currentCitySlice";
+import { useCustomDispatch, useCustomSelector } from "../../hooks/store";
+import {
+  selectCurrentCityData,
+  selectCurrentWeatherData,
+} from "../../store/selectors";
+import { currentWeatherSlice } from "../../store/slices/currentWeatherSlice";
+import { currentCitySlice } from "../../store/slices/ currentCitySlice";
 
 const Header = () => {
   const theme = useTheme();
@@ -16,9 +19,8 @@ const Header = () => {
     { value: "saint petersburg", label: "Санкт-Петербург" },
     { value: "novgorod", label: "Новгород" },
     { value: "moscow", label: "Москва" },
+    { value: "syktyvkar", label: "Сыктывкар" },
   ];
-
-
 
   const colourStyles: StylesConfig = {
     control: (styles: any) => ({
@@ -66,8 +68,7 @@ const Header = () => {
   const dispatch = useCustomDispatch();
   const onChange = (value: any) => {
     dispatch(currentCitySlice.actions.changeCity(value));
-
-  }
+  };
 
   function changeTheme() {
     theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
