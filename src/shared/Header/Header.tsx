@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Header.module.scss";
 import GlobalSwgSelector from "../../assets/icons/global/GlobalSwgSelector";
 import Select from "react-select";
-import {StylesConfig} from "react-select/dist/declarations/src/styles";
-import {useTheme} from "../../hooks/useTheme";
-import {Theme} from "../../context/ThemeContext";
+import { StylesConfig } from "react-select/dist/declarations/src/styles";
+import { useTheme } from "../../hooks/useTheme";
+import { Theme } from "../../context/ThemeContext";
+import {useCustomDispatch, useCustomSelector} from "../../hooks/store";
+import {selectCurrentCityData, selectCurrentWeatherData} from "../../store/selectors";
+import {currentWeatherSlice} from "../../store/slices/currentWeatherSlice";
+import {currentCitySlice} from "../../store/slices/ currentCitySlice";
 
 const Header = () => {
   const theme = useTheme();
   const options = [
-    { value: "city-1", label: "Санкт-Петербург" },
-    { value: "city-3", label: "Новгород" },
-    { value: "city-2", label: "Москва" },
+    { value: "saint petersburg", label: "Санкт-Петербург" },
+    { value: "novgorod", label: "Новгород" },
+    { value: "moscow", label: "Москва" },
   ];
 
 
@@ -58,15 +62,16 @@ const Header = () => {
       }
     },
   };
+  const { city } = useCustomSelector(selectCurrentCityData);
+  const dispatch = useCustomDispatch();
+  const onChange = (value: any) => {
+    dispatch(currentCitySlice.actions.changeCity(value));
 
-
-
-  function changeTheme() {
-
-    theme.changeTheme(theme.theme===Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   }
 
-
+  function changeTheme() {
+    theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+  }
 
   return (
     <header className={s.header}>
@@ -82,6 +87,8 @@ const Header = () => {
         </div>
 
         <Select
+          value={city}
+          onChange={(value: any) => onChange(value)}
           defaultValue={options[0]}
           styles={colourStyles}
           options={options}

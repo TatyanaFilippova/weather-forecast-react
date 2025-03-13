@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Weather } from "../types/types";
 import { AxiosResponse } from "axios";
 
+// тип стора
 type CurrentWeather = {
   weather: Weather;
   isLoading: boolean;
@@ -12,6 +13,7 @@ type Response = {
   status: number;
   message: string;
 };
+
 
 const initialState: CurrentWeather = {
   weather: {
@@ -28,11 +30,13 @@ const initialState: CurrentWeather = {
 
 export const currentWeatherSlice = createSlice({
   name: "current_weather",
+  // начальное значение
   initialState,
   reducers: {
     fetchCurrentWeather(state) {
       state.isLoading = true;
     },
+    //редьюсер, изменяющий состояние стора
     fetchCurrentWeatherSuccess(
       state,
       action: PayloadAction<AxiosResponse<Weather>>,
