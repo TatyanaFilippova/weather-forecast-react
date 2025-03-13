@@ -20,6 +20,7 @@ const Header = () => {
     { value: "novgorod", label: "Новгород" },
     { value: "moscow", label: "Москва" },
     { value: "syktyvkar", label: "Сыктывкар" },
+    { value: "sochi", label: "Сочи" },
   ];
 
   const colourStyles: StylesConfig = {

@@ -4,6 +4,7 @@ import cloud from "../../../../assets/images/cloud.png";
 import ThisDayItem from "./ThisDayItem";
 import { useCustomSelector } from "../../../../hooks/store";
 import { selectCurrentWeatherData } from "../../../../store/selectors";
+
 import { Weather } from "../../../../store/types/types";
 
 export interface Item {
@@ -24,7 +25,7 @@ const pressure = (weather: number) => {
   }
 }
 
-const precipitation = (weather: string) => {
+export const precipitation = (weather: string) => {
   if (weather === "Snow") {
     return "Снег";
   }
@@ -33,6 +34,9 @@ const precipitation = (weather: string) => {
   }
   if (weather === "Clouds") {
     return "Облачно";
+  }
+  if (weather === "Clear") {
+    return "Без осадков"
   }
   return "";
 };
@@ -96,6 +100,10 @@ const windCharacteristics = (weather: number) => {
   }
 };
 
+
+
+
+
 const ThisDayInfo = () => {
   const { weather } = useCustomSelector(selectCurrentWeatherData);
 
@@ -113,12 +121,12 @@ const ThisDayInfo = () => {
       icon_id: "pressure",
       name: "Давление",
       value:
-        Math.ceil(weather.main.pressure) + " мм ртутного столба - " + pressure(weather.main.pressure),
+        Math.ceil(weather.main.pressure) + " мм ртутного столба - " + (pressure(weather.main.pressure)),
     },
     {
       icon_id: "precipitation",
       name: "Осадки",
-      value: precipitation(weather.weather[0].main),
+      value: precipitation(weather.weather[0].main) + " - " + weather.weather[0].description
     },
     {
       icon_id: "wind",

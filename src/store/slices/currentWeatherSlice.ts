@@ -25,6 +25,7 @@ const initialState: CurrentWeather = {
     weather: [{
       main: "",
       icon: "",
+      description: "",
     }],
     wind: {
       speed: 0,
