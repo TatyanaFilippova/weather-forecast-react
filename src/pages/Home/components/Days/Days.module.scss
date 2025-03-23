@@ -2,7 +2,8 @@
 
 .days {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  grid-gap: 18px;
   flex-wrap: wrap;
   padding: 20px;
   width: 100%;

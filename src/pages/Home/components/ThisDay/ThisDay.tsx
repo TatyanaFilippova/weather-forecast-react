@@ -9,7 +9,7 @@ interface Props {
   city?: string;
 }
 
-const icon = (weather: string) => {
+export const icon = (weather: string) => {
   if (weather === "Snow") {
     return "snow";
   }

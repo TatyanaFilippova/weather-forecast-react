@@ -10,6 +10,9 @@ import {
   selectCurrentWeatherData,
   selectForecastListData,
 } from "../../../../store/selectors";
+import GlobalSwgSelector from "../../../../assets/icons/global/GlobalSwgSelector";
+import {icon} from "../ThisDay/ThisDay";
+import {precipitation} from "../ThisDayInfo/ThisDayInfo";
 
 export interface Day {
   day: string;
@@ -84,7 +87,7 @@ const Days = () => {
   ];
   useEffect(() => {
     dispatch(fetchForecastList({ city: city.value, days: 10 }));
-  }, [city.label]);
+  }, [city.label, city.value, dispatch]);
 
   const getDayOfTheWeek = (dt: number) => {
     const day = new Date(dt * 1000);
@@ -92,7 +95,6 @@ const Days = () => {
     let days = Math.round(
       (currentDate - Date.parse(day.toString())) / 86400000,
     ); //86400000 - ms в дне
-    console.log(days);
     if (days === 0) {
       return "Сегодня";
     }
@@ -118,20 +120,30 @@ const Days = () => {
     return day.getDate() + " " + month[day.getMonth()];
   };
 
+
+
+  const getTempDay = (value: number) => {
+    const temp = Math.ceil(value).toString();
+    if (value > 0) {
+      return "+" + temp;
+    }
+    return temp;
+  };
+
   return (
     <>
       <Tabs />
       <div className={s.days}>
-        {forecast.list.map((day) => {
+        {forecast.list.slice(1).map((day) => {
           return (
             <Card
               day={{
                 day: getDayOfTheWeek(day.dt),
                 day_info: dayOfTheMonth(day.dt),
-                icon_id: "sunny",
-                temp_day: "+18",
-                temp_night: "+15",
-                info: "Облачно",
+                icon_id: icon(day.weather[0].main),
+                temp_day: getTempDay(day.temp.day),
+                temp_night: getTempDay(day.temp.night),
+                info: precipitation(day.weather[0].main),
               }}
               key={day.temp.day}
             />

@@ -70,5 +70,8 @@ export interface ForecastList {
       eve: number;
       morn: number;
     };
+    weather: {
+      main: string;
+    }[];
   }[];
 }

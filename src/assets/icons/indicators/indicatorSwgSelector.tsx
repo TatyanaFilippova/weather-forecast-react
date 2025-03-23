@@ -83,8 +83,8 @@ export const IndicatorSvgSelector = ({ id }: Props) => {
     case "pressure":
       return (
         <svg
-          width="19"
-          height="19"
+          width="25"
+          height="25"
           viewBox="0 0 19 19"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -128,8 +128,8 @@ export const IndicatorSvgSelector = ({ id }: Props) => {
     case "precipitation":
       return (
         <svg
-          width="36"
-          height="36"
+          width="25"
+          height="25"
           viewBox="0 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -169,8 +169,8 @@ export const IndicatorSvgSelector = ({ id }: Props) => {
     case "wind":
       return (
         <svg
-          width="20"
-          height="20"
+          width="25"
+          height="25"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
