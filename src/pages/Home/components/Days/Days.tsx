@@ -99,17 +99,23 @@ const Days = () => {
     if (days === -1) {
       return "Завтра";
     }
-    const weeks =[
-      'Воскресенье',
-      'Понедельник',
-      'Вторник',
-      'Среда',
-      'Четверг',
-      'Пятница',
-      'Суббота'
-    ]
+    const weeks = [
+      "Воскресенье",
+      "Понедельник",
+      "Вторник",
+      "Среда",
+      "Четверг",
+      "Пятница",
+      "Суббота",
+    ];
 
     return weeks[day.getDay()];
+  };
+
+  const dayOfTheMonth = (dt: number) => {
+    const day = new Date(dt * 1000);
+    const month = ["янв", "фев", "марта", "апр", "май"];
+    return day.getDate() + " " + month[day.getMonth()];
   };
 
   return (
@@ -121,7 +127,7 @@ const Days = () => {
             <Card
               day={{
                 day: getDayOfTheWeek(day.dt),
-                day_info: "28 авг",
+                day_info: dayOfTheMonth(day.dt),
                 icon_id: "sunny",
                 temp_day: "+18",
                 temp_night: "+15",
