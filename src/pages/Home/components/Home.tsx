@@ -5,21 +5,24 @@ import ThisDayInfo from "./ThisDayInfo/ThisDayInfo";
 import Days from "./Days/Days";
 import { useCustomDispatch, useCustomSelector } from "../../../hooks/store";
 import { fetchCurrentWeather } from "../../../store/thunks/fethCurrentWeather";
-import {selectCurrentCityData, selectCurrentWeatherData} from "../../../store/selectors";
+import {
+  selectCurrentCityData,
+  selectCurrentWeatherData,
+} from "../../../store/selectors";
 import { Theme } from "../../../context/ThemeContext";
-
-
 
 const Home = () => {
   const dispatch = useCustomDispatch();
 
   // пример как берем данные со стора
   const { weather } = useCustomSelector(selectCurrentWeatherData);
+
   const { city } = useCustomSelector(selectCurrentCityData);
 
   useEffect(() => {
     dispatch(fetchCurrentWeather(city.value));
   }, [city.label]);
+
   return (
     <div className={s.home}>
       <div className={s.wrapper}>

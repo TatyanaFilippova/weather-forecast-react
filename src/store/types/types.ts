@@ -45,7 +45,6 @@ export interface Main {
   humidity?: number;
   sea_level?: number;
   grnd_level?: number;
-
 }
 
 export interface WeatherItem {
@@ -58,4 +57,18 @@ export interface WeatherItem {
 export interface Coord {
   lon: number;
   lat: number;
+}
+
+export interface ForecastList {
+  list: {
+    dt: number;
+    temp: {
+      day: number;
+      min: number;
+      max: number;
+      night: number;
+      eve: number;
+      morn: number;
+    };
+  }[];
 }
