@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import s from "./Days.module.scss";
 import Card from "./Card";
 import Tabs from "./Tabs";
-import { fetchCurrentWeather } from "../../../../store/thunks/fethCurrentWeather";
+
 import { useCustomDispatch, useCustomSelector } from "../../../../hooks/store";
 import { fetchForecastList } from "../../../../store/thunks/fetchForecastList";
 import {
   selectCurrentCityData,
-  selectCurrentWeatherData,
   selectForecastListData,
 } from "../../../../store/selectors";
-import GlobalSwgSelector from "../../../../assets/icons/global/GlobalSwgSelector";
-import {icon} from "../ThisDay/ThisDay";
-import {precipitation} from "../ThisDayInfo/ThisDayInfo";
+
+import { icon } from "../ThisDay/ThisDay";
+import { precipitation } from "../ThisDayInfo/ThisDayInfo";
 
 export interface Day {
   day: string;
@@ -23,71 +22,20 @@ export interface Day {
   info: string;
 }
 
+interface State{
+  open: string
+}
+
 const Days = () => {
   const dispatch = useCustomDispatch();
   const { forecast } = useCustomSelector(selectForecastListData);
   const { city } = useCustomSelector(selectCurrentCityData);
-  const days: Day[] = [
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-    {
-      day: "Сегодня",
-      day_info: "28 авг",
-      icon_id: "sunny",
-      temp_day: "+18",
-      temp_night: "+15",
-      info: "Облачно",
-    },
-  ];
+
+  const [open, setOpen] = useState("7");
+
   useEffect(() => {
-    dispatch(fetchForecastList({ city: city.value, days: 10 }));
-  }, [city.label, city.value, dispatch]);
+    dispatch(fetchForecastList({ city: city.value, days: +open  }));
+  }, [city.label, city.value, open, dispatch]);
 
   const getDayOfTheWeek = (dt: number) => {
     const day = new Date(dt * 1000);
@@ -116,11 +64,22 @@ const Days = () => {
 
   const dayOfTheMonth = (dt: number) => {
     const day = new Date(dt * 1000);
-    const month = ["янв", "фев", "марта", "апр", "май"];
+    const month = [
+      "янв",
+      "фев",
+      "марта",
+      "апр",
+      "май",
+      "июня",
+      "июля",
+      "авг",
+      "сент",
+      "окт",
+      "нояб",
+      "дек",
+    ];
     return day.getDate() + " " + month[day.getMonth()];
   };
-
-
 
   const getTempDay = (value: number) => {
     const temp = Math.ceil(value).toString();
@@ -132,9 +91,9 @@ const Days = () => {
 
   return (
     <>
-      <Tabs />
+      <Tabs open={open} setOpen={setOpen} />
       <div className={s.days}>
-        {forecast.list.slice(1).map((day) => {
+        {forecast.list.map((day) => {
           return (
             <Card
               day={{

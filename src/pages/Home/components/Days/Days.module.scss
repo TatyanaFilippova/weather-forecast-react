@@ -3,7 +3,7 @@
 .days {
   display: flex;
   justify-content: flex-start;
-  grid-gap: 18px;
+  grid-gap: 19px;
   flex-wrap: wrap;
   padding: 20px;
   width: 100%;
@@ -42,6 +42,11 @@
 
   .img {
     margin-bottom: 12px;
+
+    svg {
+      width: 44px;
+      height: 44px;
+    }
   }
 
   .day_temp {
@@ -65,10 +70,25 @@
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 7px;
+
+  .cancel,
+  .tab {
+    box-shadow: 2px 5px 25px -3px #b4b4b440;
+    border-radius: 5px;
+    padding: 9px 20px;
+    background-color: var(#{--components-background-default});
+    margin-right: 15px;
+    color: var(#{--text-color-default});
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 }
 
-.cancel,
-.tab {
+.active {
+  outline: 3px solid #4793ff;
   box-shadow: 2px 5px 25px -3px #b4b4b440;
   border-radius: 5px;
   padding: 9px 20px;
