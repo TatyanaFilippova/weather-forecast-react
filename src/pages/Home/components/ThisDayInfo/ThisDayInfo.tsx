@@ -101,6 +101,27 @@ const windCharacteristics = (weather: number) => {
 };
 
 
+const precipitationDetailed = (weather: string) =>{
+  if (weather === "light snow") {
+    return "лёгкий снег";
+  }
+  if (weather === "light rain") {
+    return "лёгкий дождь";
+  }
+  if (weather === "few clouds") {
+    return "немного облачно";
+  }
+  if (weather === "broken clouds") {
+    return "разорванные облака"
+  }
+  if (weather === "clear sky") {
+    return "чистое небо"
+  }
+  if (weather === "overcast clouds") {
+    return "затянутые облака"
+  }
+
+};
 
 
 
@@ -126,7 +147,7 @@ const ThisDayInfo = () => {
     {
       icon_id: "precipitation",
       name: "Осадки",
-      value: precipitation(weather.weather[0].main) + " - " + weather.weather[0].description
+      value: precipitation(weather.weather[0].main) + " - " + precipitationDetailed(weather.weather[0].description)
     },
     {
       icon_id: "wind",

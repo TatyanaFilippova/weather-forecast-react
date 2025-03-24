@@ -6,7 +6,7 @@ import MonthStatistics from "./pages/MonthStatistics/components/MonthStatistics"
 import { Route, Routes } from "react-router";
 import Header from "./shared/Header/Header";
 import Popup from "./shared/Popup/Popup";
-import {Theme} from "./context/ThemeContext";
+
 
 
 
