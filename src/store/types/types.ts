@@ -72,6 +72,13 @@ export interface ForecastList {
     };
     weather: {
       main: string;
+      description: string,
+
     }[];
-  }[];
+    pressure: number;
+    feels_like: {
+      day: number,
+    }
+    speed: number;
+    }[];
 }

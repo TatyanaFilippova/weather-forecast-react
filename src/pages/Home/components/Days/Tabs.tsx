@@ -9,6 +9,7 @@ interface Props {
 interface State {
   open: string;
   setOpen: (open: string) => void;
+
 }
 
 const Tabs = ({ open, setOpen }: State) => {

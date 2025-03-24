@@ -6,6 +6,7 @@ import { useCustomSelector } from "../../../../hooks/store";
 import { selectCurrentWeatherData } from "../../../../store/selectors";
 
 import { Weather } from "../../../../store/types/types";
+import { getTempDay } from "../Days/Days";
 
 export interface Item {
   icon_id: string;
@@ -13,17 +14,17 @@ export interface Item {
   value: string;
 }
 
-const pressure = (weather: number) => {
+export const pressure = (weather: number) => {
   if (weather === 760) {
-    return "нормальное"
+    return "нормальное";
   }
   if (weather < 760) {
-    return "низкое"
+    return "низкое";
   }
   if (weather > 760) {
-    return "высокое"
+    return "высокое";
   }
-}
+};
 
 export const precipitation = (weather: string) => {
   if (weather === "Snow") {
@@ -36,7 +37,7 @@ export const precipitation = (weather: string) => {
     return "Облачно";
   }
   if (weather === "Clear") {
-    return "Без осадков"
+    return "Без осадков";
   }
   return "";
 };
@@ -69,8 +70,7 @@ const wind = (weather: number) => {
   }
 };
 
-const windCharacteristics = (weather: number) => {
-  console.log(weather);
+export const windCharacteristics = (weather: number) => {
   if (weather === 0 && weather < 1) {
     return "штиль";
   }
@@ -100,8 +100,7 @@ const windCharacteristics = (weather: number) => {
   }
 };
 
-
-const precipitationDetailed = (weather: string) =>{
+export const precipitationDetailed = (weather: string) => {
   if (weather === "light snow") {
     return "лёгкий снег";
   }
@@ -112,18 +111,20 @@ const precipitationDetailed = (weather: string) =>{
     return "немного облачно";
   }
   if (weather === "broken clouds") {
-    return "разорванные облака"
+    return "разорванные облака";
   }
   if (weather === "clear sky") {
-    return "чистое небо"
+    return "чистое небо";
   }
   if (weather === "overcast clouds") {
-    return "затянутые облака"
+    return "затянутые облака";
+  }
+  if (weather === "rain and snow") {
+    return "дождь и снег";
   }
 
+  return weather;
 };
-
-
 
 const ThisDayInfo = () => {
   const { weather } = useCustomSelector(selectCurrentWeatherData);
@@ -133,21 +134,25 @@ const ThisDayInfo = () => {
       icon_id: "temp",
       name: "Температура",
       value:
-        Math.ceil(weather.main.temp) +
+        getTempDay(Math.ceil(weather.main.temp)) +
         " - ощущается как " +
-        Math.ceil(weather.main.feels_like) +
-        "°",
+        getTempDay(Math.ceil(weather.main.feels_like)),
     },
     {
       icon_id: "pressure",
       name: "Давление",
       value:
-        Math.ceil(weather.main.pressure) + " мм ртутного столба - " + (pressure(weather.main.pressure)),
+        Math.ceil(weather.main.pressure) +
+        " мм ртутного столба - " +
+        pressure(weather.main.pressure),
     },
     {
       icon_id: "precipitation",
       name: "Осадки",
-      value: precipitation(weather.weather[0].main) + " - " + precipitationDetailed(weather.weather[0].description)
+      value:
+        precipitation(weather.weather[0].main) +
+        " - " +
+        precipitationDetailed(weather.weather[0].description),
     },
     {
       icon_id: "wind",
@@ -157,7 +162,7 @@ const ThisDayInfo = () => {
         " м/с " +
         wind(weather.wind.deg) +
         " - " +
-        windCharacteristics( Math.ceil(weather.wind.speed)),
+        windCharacteristics(Math.ceil(weather.wind.speed)),
     },
   ];
 

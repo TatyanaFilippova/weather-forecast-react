@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Days.module.scss";
 import Card from "./Card";
 import Tabs from "./Tabs";
@@ -11,7 +11,13 @@ import {
 } from "../../../../store/selectors";
 
 import { icon } from "../ThisDay/ThisDay";
-import { precipitation } from "../ThisDayInfo/ThisDayInfo";
+import {
+  precipitation,
+  precipitationDetailed,
+  pressure,
+  windCharacteristics,
+} from "../ThisDayInfo/ThisDayInfo";
+import Popup from "../../../../shared/Popup/Popup";
 
 export interface Day {
   day: string;
@@ -20,12 +26,19 @@ export interface Day {
   temp_day: string;
   temp_night: string;
   info: string;
+  pressure: string;
+  feels_like: string;
+  description: string;
+  speed: string;
 }
 
-interface State{
-  open: string
-}
-
+export const getTempDay = (value: number) => {
+  const temp = Math.ceil(value).toString() + "°";
+  if (value > 0) {
+    return "+" + temp;
+  }
+  return temp;
+};
 const Days = () => {
   const dispatch = useCustomDispatch();
   const { forecast } = useCustomSelector(selectForecastListData);
@@ -34,7 +47,7 @@ const Days = () => {
   const [open, setOpen] = useState("7");
 
   useEffect(() => {
-    dispatch(fetchForecastList({ city: city.value, days: +open  }));
+    dispatch(fetchForecastList({ city: city.value, days: +open }));
   }, [city.label, city.value, open, dispatch]);
 
   const getDayOfTheWeek = (dt: number) => {
@@ -81,14 +94,6 @@ const Days = () => {
     return day.getDate() + " " + month[day.getMonth()];
   };
 
-  const getTempDay = (value: number) => {
-    const temp = Math.ceil(value).toString();
-    if (value > 0) {
-      return "+" + temp;
-    }
-    return temp;
-  };
-
   return (
     <>
       <Tabs open={open} setOpen={setOpen} />
@@ -103,6 +108,15 @@ const Days = () => {
                 temp_day: getTempDay(day.temp.day),
                 temp_night: getTempDay(day.temp.night),
                 info: precipitation(day.weather[0].main),
+                pressure:
+                  `${day.pressure} мм ртутного столба - ` +
+                  pressure(day.pressure),
+                feels_like: ` - ощущается как ${getTempDay(Math.ceil(day.feels_like.day))}`,
+                description: precipitationDetailed(day.weather[0].description),
+                speed:
+                  Math.ceil(day.speed).toString() +
+                  " м/с - " +
+                  windCharacteristics(Math.ceil(day.speed)),
               }}
               key={day.temp.day}
             />

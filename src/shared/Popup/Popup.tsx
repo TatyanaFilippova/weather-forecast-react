@@ -1,46 +1,54 @@
 import React from "react";
 import s from "./Popup.module.scss";
 import ThisDayItem from "../../pages/Home/components/ThisDayInfo/ThisDayItem";
-import cloud from "../../assets/images/cloud.png";
-import { Item } from "../../pages/Home/components/ThisDayInfo/ThisDayInfo";
+import {
+  Item,
+  windCharacteristics,
+} from "../../pages/Home/components/ThisDayInfo/ThisDayInfo";
 import GlobalSwgSelector from "../../assets/icons/global/GlobalSwgSelector";
+import { Day } from "../../pages/Home/components/Days/Days";
 
-const Popup = () => {
+interface State {
+  day: Day;
+
+  setOpen: (open: boolean) => void;
+}
+
+const Popup = ({ setOpen, day }: State) => {
   const items = [
     {
       icon_id: "temp",
       name: "Температура",
-      value: "20° - ощущается как 17°",
+      value: day.temp_day + day.feels_like,
     },
     {
       icon_id: "pressure",
       name: "Давление",
-      value: "765 мм ртутного столба - нормальное",
+      value: day.pressure,
     },
     {
       icon_id: "precipitation",
       name: "Осадки",
-      value: "Без осадков",
+      value: day.info + " - " + day.description,
     },
     {
       icon_id: "wind",
       name: "Ветер",
-      value: "3 м/с юго-запад - легкий ветерв",
+      value: day.speed,
     },
   ];
   return (
     <>
-      <div className={s.blur}></div>
+      <div className={s.blur} onClick={()=>setOpen(false)}></div>
       <div className={s.popup}>
         <div className={s.day}>
-          <div className={s.day_temp}>20</div>
-          <div className={s.day_name}>Среда</div>
+          <div className={s.day_temp}>{day.temp_day}</div>
+          <div className={s.day_name}>{day.day}</div>
+          <div className={s.day_info}>{day.day_info}</div>
           <div className={s.img}>
-            <GlobalSwgSelector id="sunny" />
+            <GlobalSwgSelector id={day.icon_id} />
           </div>
-          <div className={s.day_time}>
-            Время: <span>21:54</span>
-          </div>
+
           <div className={s.day_city}>
             Город: <span>Cанкт-Петербург</span>
           </div>
@@ -50,7 +58,7 @@ const Popup = () => {
             return <ThisDayItem item={item} key={item.icon_id} />;
           })}
         </div>
-        <div className={s.close}>
+        <div className={s.close} onClick={() => setOpen(false)}>
           <GlobalSwgSelector id="close" />
         </div>
       </div>

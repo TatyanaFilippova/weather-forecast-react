@@ -1,14 +1,15 @@
 import React from "react";
 import { Item } from "./ThisDayInfo";
 import s from "./ThisDayInfo.module.scss";
-import {IndicatorSvgSelector} from "../../../../assets/icons/indicators/indicatorSwgSelector";
+import { IndicatorSvgSelector } from "../../../../assets/icons/indicators/indicatorSwgSelector";
 
 interface Props {
   item: Item;
 }
 
 const ThisDayItem = ({ item }: Props) => {
-    const { icon_id, value, name } = item;
+  const { icon_id, value, name } = item;
+
   return (
     <div className={s.item}>
       <div className={s.indicator}>
