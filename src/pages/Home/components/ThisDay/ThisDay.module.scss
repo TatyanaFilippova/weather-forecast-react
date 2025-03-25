@@ -1,4 +1,5 @@
 @import "../../../../style/variables";
+@import "../../../../style/mixins";
 
 .this_day {
   padding: 20px;
@@ -7,6 +8,12 @@
   background: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+
+  @include for-mobile {
+    margin-bottom: 20px;
+    padding: 30px;
+
+  }
 }
 
 .top_block {
@@ -28,7 +35,12 @@
   .this_day_day_name {
     font-size: 40px;
     color: var(#{--text-color-default});
+
+    @include for-mobile {
+      font-size: 34px;
+    }
   }
+
 }
 
 .bottom_block {
@@ -36,5 +48,9 @@
   .this_city {
     color: $base-color;
     font-size: 25px;
+
+    @include for-mobile {
+      font-size: 20px;
+    }
   }
 }

@@ -42,15 +42,19 @@ const Popup = ({ setOpen, day}: State) => {
       <div className={s.blur} onClick={() => setOpen(false)}></div>
       <div className={s.popup}>
         <div className={s.day}>
-          <div className={s.day_temp}>{day.temp_day}</div>
-          <div className={s.day_name}>{day.day}</div>
-          <div className={s.day_info}>{day.day_info}</div>
-          <div className={s.img}>
-            <GlobalSwgSelector id={day.icon_id} />
+          <div className={s.day_popup}>
+            <div className={s.day_temp}>{day.temp_day}</div>
+            <div className={s.day_name}>{day.day}</div>
+            <div className={s.day_info}>{day.day_info}</div>
           </div>
+          <div>
+            <div className={s.img}>
+              <GlobalSwgSelector id={day.icon_id} />
+            </div>
 
-          <div className={s.day_city}>
-            Город: <span>{city.label}</span>
+            <div className={s.day_city}>
+              Город: <span>{city.label}</span>
+            </div>
           </div>
         </div>
         <div className={s.this_day_info_items}>

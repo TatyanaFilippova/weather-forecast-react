@@ -1,5 +1,14 @@
+@import "../../../style/mixins";
+
 .wrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+
+  @include for-mobile {
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
 }

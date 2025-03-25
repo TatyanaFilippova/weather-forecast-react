@@ -1,4 +1,5 @@
 @import "../../../../style/variables";
+@import "../../../../style/mixins";
 
 .this_day_info {
   position: relative;
@@ -8,6 +9,10 @@
   background: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+
+  @include for-mobile {
+    padding: 20px;
+  }
 }
 
 .item {
@@ -16,6 +21,7 @@
   align-items: center;
   margin-bottom: 25px;
   z-index: 1;
+
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -33,6 +39,9 @@
     background: #fff;
     box-shadow: 1px 4px 10px -1px #4793ff33;
     border-radius: 50%;
+    @include for-mobile {
+      padding: 8px;
+    }
   }
 
   .indicator_name,
@@ -46,6 +55,11 @@
 
   .indicator_value {
     color: var(#{--text-color-default});
+
+    @include for-mobile {
+      text-align: end;
+      margin-left: auto;
+    }
   }
 }
 

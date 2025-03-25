@@ -1,4 +1,5 @@
 @import "../../../../style/variables";
+@import "../../../../style/mixins";
 
 .days {
   display: flex;
@@ -9,8 +10,12 @@
   width: 100%;
   background-color: var(#{--components-background-default});
   box-shadow: $box-shadow;
-
   border-radius: 0 0 $border-radius;
+
+  @include for-mobile {
+    justify-content: space-between;
+    padding: 10px;
+  }
 }
 
 .card {
@@ -71,6 +76,10 @@
   margin-top: 50px;
   margin-bottom: 7px;
 
+  @include for-mobile {
+    margin-top: 30px;
+    display: block;
+  }
 
   .tab {
     box-shadow: 2px 5px 25px -3px #b4b4b440;
@@ -84,6 +93,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    @include for-mobile {
+      &:last-of-type {
+        margin-right: 0;
+      }
+      padding: 9px;
+      font-size: 16px;
+    }
   }
 }
 
@@ -100,9 +117,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @include for-mobile {
+    &:last-of-type {
+      margin-right: 0;
+    }
+    padding: 9px;
+    font-size: 16px;
+  }
 }
-
-
 
 .tab {
   &.active {
@@ -113,4 +136,8 @@
 
 .tabs_wrapper {
   display: flex;
+
+  @include for-mobile {
+    justify-content: space-between;
+  }
 }
