@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import s from "./Days.module.scss";
 
 interface Props {
@@ -9,7 +9,6 @@ interface Props {
 interface State {
   open: string;
   setOpen: (open: string) => void;
-
 }
 
 const Tabs = ({ open, setOpen }: State) => {
@@ -28,21 +27,16 @@ const Tabs = ({ open, setOpen }: State) => {
     },
   ];
 
-
-
   return (
     <div className={s.tabs}>
       <div className={s.tabs_wrapper}>
         {tabs.map((tab: Props) => {
           return (
             <div
-
-              className={open===tab.id? s.active: s.tab}
+              className={open === tab.id ? s.active : s.tab}
               key={tab.value}
-
               onClick={() => {
                 setOpen(tab.id);
-
               }}
             >
               {tab.value}
@@ -50,7 +44,6 @@ const Tabs = ({ open, setOpen }: State) => {
           );
         })}
       </div>
-      {/*<div className={s.cancel}>Отменить</div>*/}
     </div>
   );
 };

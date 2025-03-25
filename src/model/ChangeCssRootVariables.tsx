@@ -8,6 +8,7 @@ export const ChangeCssRootVariables = (theme: Theme) => {
     "card-shadow",
     "text-color",
     "body-background",
+    "blur-background",
   ];
 
   components.forEach((component) => {

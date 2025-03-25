@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from "./ThisDay.module.scss";
 import GlobalSwgSelector from "../../../../assets/icons/global/GlobalSwgSelector";
 import { Weather } from "../../../../store/types/types";
-import { precipitation } from "../ThisDayInfo/ThisDayInfo";
+
 
 interface Props {
   weather: Weather;

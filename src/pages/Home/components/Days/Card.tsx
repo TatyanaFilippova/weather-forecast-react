@@ -10,6 +10,7 @@ interface Props {
 
 const Card = ({ day }: Props) => {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       {open && <Popup day={day} setOpen={setOpen} />}

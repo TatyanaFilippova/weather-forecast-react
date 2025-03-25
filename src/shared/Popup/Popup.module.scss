@@ -11,9 +11,10 @@
   padding: 40px;
   width: 100%;
   max-width: 750px;
-  background: $light-background;
+  background: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+  border: 2px solid $primary-color;
 }
 
 .blur {
@@ -23,7 +24,7 @@
   z-index: 1000;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.25);
+  background:  var(#{--blur-background-default});
 }
 
 .close {
@@ -52,6 +53,7 @@
     font-size: 25px;
     line-height: 30px;
     margin-bottom: 12px;
+    color: var(#{--text-color-default});
   }
   .img {
     svg {

@@ -6,12 +6,11 @@ import { StylesConfig } from "react-select/dist/declarations/src/styles";
 import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../context/ThemeContext";
 import { useCustomDispatch, useCustomSelector } from "../../hooks/store";
-import {
-  selectCurrentCityData,
-  selectCurrentWeatherData,
-} from "../../store/selectors";
-import { currentWeatherSlice } from "../../store/slices/currentWeatherSlice";
+import { selectCurrentCityData } from "../../store/selectors";
+
 import { currentCitySlice } from "../../store/slices/ currentCitySlice";
+
+
 
 const Header = () => {
   const theme = useTheme();
@@ -90,7 +89,9 @@ const Header = () => {
 
         <Select
           value={city}
-          onChange={(value: any) => onChange(value)}
+          onChange={(value: any) => {
+            onChange(value);
+          }}
           defaultValue={options[0]}
           styles={colourStyles}
           options={options}

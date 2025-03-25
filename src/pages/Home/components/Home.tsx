@@ -9,7 +9,6 @@ import {
   selectCurrentCityData,
   selectCurrentWeatherData,
 } from "../../../store/selectors";
-import { Theme } from "../../../context/ThemeContext";
 
 const Home = () => {
   const dispatch = useCustomDispatch();

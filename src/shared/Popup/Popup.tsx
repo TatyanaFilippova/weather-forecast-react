@@ -1,12 +1,11 @@
 import React from "react";
 import s from "./Popup.module.scss";
 import ThisDayItem from "../../pages/Home/components/ThisDayInfo/ThisDayItem";
-import {
-  Item,
-  windCharacteristics,
-} from "../../pages/Home/components/ThisDayInfo/ThisDayInfo";
+import { Item } from "../../pages/Home/components/ThisDayInfo/ThisDayInfo";
 import GlobalSwgSelector from "../../assets/icons/global/GlobalSwgSelector";
 import { Day } from "../../pages/Home/components/Days/Days";
+import {useCustomSelector} from "../../hooks/store";
+import {selectCurrentCityData} from "../../store/selectors";
 
 interface State {
   day: Day;
@@ -14,7 +13,7 @@ interface State {
   setOpen: (open: boolean) => void;
 }
 
-const Popup = ({ setOpen, day }: State) => {
+const Popup = ({ setOpen, day}: State) => {
   const items = [
     {
       icon_id: "temp",
@@ -37,9 +36,10 @@ const Popup = ({ setOpen, day }: State) => {
       value: day.speed,
     },
   ];
+  const { city } = useCustomSelector(selectCurrentCityData);
   return (
     <>
-      <div className={s.blur} onClick={()=>setOpen(false)}></div>
+      <div className={s.blur} onClick={() => setOpen(false)}></div>
       <div className={s.popup}>
         <div className={s.day}>
           <div className={s.day_temp}>{day.temp_day}</div>
@@ -50,7 +50,7 @@ const Popup = ({ setOpen, day }: State) => {
           </div>
 
           <div className={s.day_city}>
-            Город: <span>Cанкт-Петербург</span>
+            Город: <span>{city.label}</span>
           </div>
         </div>
         <div className={s.this_day_info_items}>

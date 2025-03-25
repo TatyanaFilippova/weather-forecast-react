@@ -60,6 +60,7 @@ export interface Coord {
 }
 
 export interface ForecastList {
+
   list: {
     dt: number;
     temp: {
@@ -72,13 +73,12 @@ export interface ForecastList {
     };
     weather: {
       main: string;
-      description: string,
-
+      description: string;
     }[];
     pressure: number;
     feels_like: {
-      day: number,
-    }
+      day: number;
+    };
     speed: number;
-    }[];
+  }[];
 }

@@ -17,7 +17,6 @@ import {
   pressure,
   windCharacteristics,
 } from "../ThisDayInfo/ThisDayInfo";
-import Popup from "../../../../shared/Popup/Popup";
 
 export interface Day {
   day: string;
@@ -30,6 +29,7 @@ export interface Day {
   feels_like: string;
   description: string;
   speed: string;
+
 }
 
 export const getTempDay = (value: number) => {
@@ -117,6 +117,7 @@ const Days = () => {
                   Math.ceil(day.speed).toString() +
                   " м/с - " +
                   windCharacteristics(Math.ceil(day.speed)),
+
               }}
               key={day.temp.day}
             />
