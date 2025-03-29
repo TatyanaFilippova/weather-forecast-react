@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import s from "./Days.module.scss";
 import Card from "./Card";
 import Tabs from "./Tabs";
-
 import { useCustomDispatch, useCustomSelector } from "../../../../hooks/store";
 import { fetchForecastList } from "../../../../store/thunks/fetchForecastList";
 import {
   selectCurrentCityData,
   selectForecastListData,
 } from "../../../../store/selectors";
-
 import { icon } from "../ThisDay/ThisDay";
 import {
   precipitation,
@@ -29,7 +27,6 @@ export interface Day {
   feels_like: string;
   description: string;
   speed: string;
-
 }
 
 export const getTempDay = (value: number) => {
@@ -45,7 +42,6 @@ const Days = () => {
   const { city } = useCustomSelector(selectCurrentCityData);
 
   const [open, setOpen] = useState("7");
-
   useEffect(() => {
     dispatch(fetchForecastList({ city: city.value, days: +open }));
   }, [city.label, city.value, open, dispatch]);
@@ -117,7 +113,6 @@ const Days = () => {
                   Math.ceil(day.speed).toString() +
                   " м/с - " +
                   windCharacteristics(Math.ceil(day.speed)),
-
               }}
               key={day.temp.day}
             />

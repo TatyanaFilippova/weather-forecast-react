@@ -26,12 +26,14 @@ const ThisDaySkeleton = () => {
       <div className={s.bottom_block}>
         <div className={s.this_time}>
           <Skeleton
+            width={190}
             baseColor={"#a6a6a6"}
             customHighlightBackground="linear-gradient(90deg, var(--base-color) 40%, var(--highlight-color) 50%, var(--base-color) 60%)"
           />
         </div>
         <div className={s.this_city}>
           <Skeleton
+            width={300}
             baseColor={"#a6a6a6"}
             customHighlightBackground="linear-gradient(90deg, var(--base-color) 40%, var(--highlight-color) 50%, var(--base-color) 60%)"
           />

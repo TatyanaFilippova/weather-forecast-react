@@ -10,6 +10,7 @@ import {
   selectCurrentWeatherData,
 } from "../../../store/selectors";
 import ThisDaySkeleton from "./ThisDay/ThisDaySkeleton";
+import DaysSkeleton from "./Days/DaysSkeleton";
 
 const Home = () => {
   const dispatch = useCustomDispatch();
@@ -34,7 +35,7 @@ const Home = () => {
 
         <ThisDayInfo />
       </div>
-      <Days />
+      {isLoading === false ? <Days /> : <DaysSkeleton />}
     </div>
   );
 };

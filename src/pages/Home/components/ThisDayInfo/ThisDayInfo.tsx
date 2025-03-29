@@ -4,9 +4,8 @@ import cloud from "../../../../assets/images/cloud.png";
 import ThisDayItem from "./ThisDayItem";
 import { useCustomSelector } from "../../../../hooks/store";
 import { selectCurrentWeatherData } from "../../../../store/selectors";
-
-import { Weather } from "../../../../store/types/types";
 import { getTempDay } from "../Days/Days";
+import ThisDayItemSkeleton from "./ThisDayItemSkeleton";
 
 export interface Item {
   icon_id: string;
@@ -169,11 +168,21 @@ const ThisDayInfo = () => {
     },
   ];
 
+  const { isLoading } = useCustomSelector(selectCurrentWeatherData);
   return (
     <div className={s.this_day_info}>
       <div className={s.this_day_info_items}>
         {items.map((item: Item) => {
-          return <ThisDayItem item={item} key={item.icon_id} />;
+          return (
+            <>
+              {isLoading === false ? (
+                <ThisDayItem item={item} key={item.icon_id} />
+              ) : (
+                <ThisDayItemSkeleton item={item} key={item.icon_id} />
+              )}
+              ;
+            </>
+          );
         })}
       </div>
       <img src={cloud} alt="облако" className={s.cloud_img} />
