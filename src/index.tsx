@@ -7,8 +7,8 @@ import { BrowserRouter as Router } from "react-router";
 import { ThemeProvider } from "./provider/ThemeProvider";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
-import {Theme} from "./context/ThemeContext";
-
+import { Theme } from "./context/ThemeContext";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -18,7 +18,7 @@ root.render(
     <Provider store={store}>
       <Router>
         <ThemeProvider>
-          <App  />
+          <App />
         </ThemeProvider>
       </Router>
     </Provider>

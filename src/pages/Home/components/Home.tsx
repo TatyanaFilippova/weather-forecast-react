@@ -9,13 +9,14 @@ import {
   selectCurrentCityData,
   selectCurrentWeatherData,
 } from "../../../store/selectors";
+import ThisDaySkeleton from "./ThisDay/ThisDaySkeleton";
 
 const Home = () => {
   const dispatch = useCustomDispatch();
 
   // пример как берем данные со стора
   const { weather } = useCustomSelector(selectCurrentWeatherData);
-
+  const { isLoading } = useCustomSelector(selectCurrentWeatherData);
   const { city } = useCustomSelector(selectCurrentCityData);
 
   useEffect(() => {
@@ -25,7 +26,12 @@ const Home = () => {
   return (
     <div className={s.home}>
       <div className={s.wrapper}>
-        <ThisDay weather={weather} city={city.label} />
+        {isLoading === false ? (
+          <ThisDay weather={weather} city={city.label} />
+        ) : (
+          <ThisDaySkeleton />
+        )}
+
         <ThisDayInfo />
       </div>
       <Days />

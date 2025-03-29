@@ -3,7 +3,6 @@ import s from "./ThisDay.module.scss";
 import GlobalSwgSelector from "../../../../assets/icons/global/GlobalSwgSelector";
 import { Weather } from "../../../../store/types/types";
 
-
 interface Props {
   weather: Weather;
   city?: string;
@@ -19,7 +18,10 @@ export const icon = (weather: string) => {
   if (weather === "Clouds") {
     return "cloudy";
   }
-  return "sun";
+  if (weather === "Clear") {
+    return "sun";
+  }
+  return "";
 };
 
 const ThisDay = ({ weather, city }: Props) => {

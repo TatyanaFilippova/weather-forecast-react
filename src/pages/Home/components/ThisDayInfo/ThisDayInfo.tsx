@@ -122,6 +122,9 @@ export const precipitationDetailed = (weather: string) => {
   if (weather === "rain and snow") {
     return "дождь и снег";
   }
+  if (weather === "sky is clear") {
+    return "безоблачно";
+  }
 
   return weather;
 };
