@@ -15,12 +15,6 @@ const HeaderSkeleton = () => {
             customHighlightBackground="linear-gradient(90deg, var(--base-color) 40%, var(--highlight-color) 50%, var(--base-color) 60%)"
           />
         </div>
-        <Skeleton
-          width={228}
-          height={28}
-          baseColor={"#a6a6a6"}
-          customHighlightBackground="linear-gradient(90deg, var(--base-color) 40%, var(--highlight-color) 50%, var(--base-color) 60%)"
-        />
       </div>
       <div className={s.wrapper}>
         <div className={s.change_theme}>
