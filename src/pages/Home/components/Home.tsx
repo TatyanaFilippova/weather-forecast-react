@@ -32,7 +32,6 @@ const Home = () => {
         ) : (
           <ThisDaySkeleton />
         )}
-
         <ThisDayInfo />
       </div>
       {isLoading === false ? <Days /> : <DaysSkeleton />}

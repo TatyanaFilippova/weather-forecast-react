@@ -15,7 +15,6 @@ function App() {
     <div className="global-container">
       <div className="container">
         {isLoading ? <HeaderSkeleton /> : <Header />}
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/month-statistics" element={<MonthStatistics />} />

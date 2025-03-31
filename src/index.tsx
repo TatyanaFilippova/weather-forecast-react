@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router";
 import { ThemeProvider } from "./provider/ThemeProvider";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
-import { Theme } from "./context/ThemeContext";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const root = ReactDOM.createRoot(

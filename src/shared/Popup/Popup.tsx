@@ -4,8 +4,8 @@ import ThisDayItem from "../../pages/Home/components/ThisDayInfo/ThisDayItem";
 import { Item } from "../../pages/Home/components/ThisDayInfo/ThisDayInfo";
 import GlobalSwgSelector from "../../assets/icons/global/GlobalSwgSelector";
 import { Day } from "../../pages/Home/components/Days/Days";
-import {useCustomSelector} from "../../hooks/store";
-import {selectCurrentCityData} from "../../store/selectors";
+import { useCustomSelector } from "../../hooks/store";
+import { selectCurrentCityData } from "../../store/selectors";
 
 interface State {
   day: Day;
@@ -13,7 +13,7 @@ interface State {
   setOpen: (open: boolean) => void;
 }
 
-const Popup = ({ setOpen, day}: State) => {
+const Popup = ({ setOpen, day }: State) => {
   const items = [
     {
       icon_id: "temp",
@@ -51,7 +51,6 @@ const Popup = ({ setOpen, day}: State) => {
             <div className={s.img}>
               <GlobalSwgSelector id={day.icon_id} />
             </div>
-
             <div className={s.day_city}>
               Город: <span>{city.label}</span>
             </div>

@@ -10,11 +10,14 @@ import {
 } from "../../../../store/selectors";
 import { icon } from "../ThisDay/ThisDay";
 import {
+  dayOfTheMonth,
+  getDayOfTheWeek,
+  getTempDay,
   precipitation,
   precipitationDetailed,
   pressure,
   windCharacteristics,
-} from "../ThisDayInfo/ThisDayInfo";
+} from "../../../../utilities/utilities";
 
 export interface Day {
   day: string;
@@ -29,66 +32,14 @@ export interface Day {
   speed: string;
 }
 
-export const getTempDay = (value: number) => {
-  const temp = Math.ceil(value).toString() + "°";
-  if (value > 0) {
-    return "+" + temp;
-  }
-  return temp;
-};
 const Days = () => {
   const dispatch = useCustomDispatch();
   const { forecast } = useCustomSelector(selectForecastListData);
   const { city } = useCustomSelector(selectCurrentCityData);
-
   const [open, setOpen] = useState("7");
   useEffect(() => {
     dispatch(fetchForecastList({ city: city.value, days: +open }));
   }, [city.label, city.value, open, dispatch]);
-
-  const getDayOfTheWeek = (dt: number) => {
-    const day = new Date(dt * 1000);
-    let currentDate = Date.parse(new Date().toString());
-    let days = Math.round(
-      (currentDate - Date.parse(day.toString())) / 86400000,
-    ); //86400000 - ms в дне
-    if (days === 0) {
-      return "Сегодня";
-    }
-    if (days === -1) {
-      return "Завтра";
-    }
-    const weeks = [
-      "Воскресенье",
-      "Понедельник",
-      "Вторник",
-      "Среда",
-      "Четверг",
-      "Пятница",
-      "Суббота",
-    ];
-
-    return weeks[day.getDay()];
-  };
-
-  const dayOfTheMonth = (dt: number) => {
-    const day = new Date(dt * 1000);
-    const month = [
-      "янв",
-      "фев",
-      "марта",
-      "апр",
-      "май",
-      "июня",
-      "июля",
-      "авг",
-      "сент",
-      "окт",
-      "нояб",
-      "дек",
-    ];
-    return day.getDate() + " " + month[day.getMonth()];
-  };
 
   return (
     <>

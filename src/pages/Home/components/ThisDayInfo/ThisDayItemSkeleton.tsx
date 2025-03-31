@@ -18,7 +18,7 @@ const ThisDayItemSkeleton = ({ item }: Props) => {
       <div className={s.indicator_name}>{name}</div>
       <div className={s.indicator_value}>
         <Skeleton
-          width={260}
+          width={150}
           height={17}
           baseColor={"#a6a6a6"}
           customHighlightBackground="linear-gradient(90deg, var(--base-color) 40%, var(--highlight-color) 50%, var(--base-color) 60%)"
