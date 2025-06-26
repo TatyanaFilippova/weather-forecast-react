@@ -131,6 +131,9 @@ export const precipitationDetailed = (weather: string) => {
   if (weather === "snow") {
     return "снег";
   }
+  if (weather === "thunderstorm"){
+    return "гроза"
+  }
 
   return weather;
 };
