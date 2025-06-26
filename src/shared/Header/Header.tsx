@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Header.module.scss";
 import GlobalSwgSelector from "../../assets/icons/global/GlobalSwgSelector";
 import Select from "react-select";
@@ -16,7 +16,7 @@ const Header = () => {
   const theme = useTheme();
   const options = [
     { value: "saint petersburg", label: "Санкт-Петербург" },
-    { value: "novgorod", label: "Новгород" },
+    { value: "novgorod", label: "Нижний Новгород" },
     { value: "moscow", label: "Москва" },
     { value: "syktyvkar", label: "Сыктывкар" },
     { value: "sochi", label: "Сочи" },
